@@ -19,10 +19,6 @@
 */
 
 public class Unboxing.ProgressView : AbstractView {
-    public enum ProgressType {
-        BUNDLE_INSTALL,
-        REF_INSTALL
-    }
 
     private Gtk.ProgressBar progressbar;
 
@@ -44,12 +40,6 @@ public class Unboxing.ProgressView : AbstractView {
         }
     }
 
-    public ProgressType view_type { get; construct; }
-
-    public ProgressView (ProgressType type) {
-        Object (view_type: type);
-    }
-
     construct {
         secondary_label.use_markup = true;
         secondary_label.label = _("Preparing…");
@@ -60,9 +50,7 @@ public class Unboxing.ProgressView : AbstractView {
             hexpand = true
         };
 
-        if (view_type == ProgressType.BUNDLE_INSTALL) {
-            Timeout.add (50, () => { progressbar.pulse (); } );
-        }
+        Timeout.add (50, () => { progressbar.pulse (); } );
 
         content_area.attach (progressbar, 0, 0);
 

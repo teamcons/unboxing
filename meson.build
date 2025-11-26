@@ -26,6 +26,7 @@ executable(
     meson.project_name(),
     config_file,
     'src/Utils/AsyncMutex.vala',
+    'src/Utils/Utils.vala',
     'src/Views/AbstractView.vala',
     'src/Views/ErrorView.vala',
     'src/Views/MainView.vala',
@@ -33,9 +34,7 @@ executable(
     'src/Views/SuccessView.vala',
     'src/Application.vala',
     'src/MainWindow.vala',
-    'src/FlatpakFile.vala',
-    'src/FlatpakRefFile.vala',
-    'src/FlatpakBundleFile.vala',
+    'src/Backend.vala',
     dependencies: [
         dependency('packagekit-glib2'),
         dependency ('glib-2.0'),

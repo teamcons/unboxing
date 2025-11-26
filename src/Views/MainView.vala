@@ -29,16 +29,13 @@ public class Unboxing.MainView : AbstractView {
     private Gtk.Label download_size_label;
     private Gtk.Image updates_icon;
     private Gtk.Label updates_label;
-    private Gtk.Image repo_icon;
-    private Gtk.Label repo_label;
     private Gtk.Image permissions_image;
     private Gtk.Label permissions_label;
 
     construct {
         primary_label.label = _("Trust and install this app?");
-
-        secondary_label.label = _("This app is provided solely by its developer and has not been reviewed by elementary for security, privacy, or system integration.");
-
+        secondary_label.label = _("This app is provided solely by its developer and has not been reviewed for security, privacy, or system integration.");
+/*  
         var loading_spinner = new Gtk.Spinner ();
         loading_spinner.start ();
 
@@ -46,7 +43,7 @@ public class Unboxing.MainView : AbstractView {
 
         var loading_grid = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 6);
         loading_grid.append (loading_spinner);
-        loading_grid.append (loading_label);
+        loading_grid.append (loading_label);  */
 
         var agree_check = new Gtk.CheckButton.with_label (_("I understand"));
         agree_check.margin_top = 12;
@@ -69,25 +66,11 @@ public class Unboxing.MainView : AbstractView {
         updates_icon.add_css_class (Granite.STYLE_CLASS_ACCENT);
         updates_icon.add_css_class ("orange");
 
-        updates_label = new Gtk.Label (_("Updates to this app will not be reviewed by elementary"));
+        updates_label = new Gtk.Label (_("Updates may need to be installed manually"));
         updates_label.selectable = true;
         updates_label.max_width_chars = 50;
         updates_label.wrap = true;
         updates_label.xalign = 0;
-
-        repo_icon = new Gtk.Image.from_icon_name ("system-software-install-symbolic") {
-            valign = START
-        };
-        repo_icon.add_css_class (Granite.STYLE_CLASS_ACCENT);
-        repo_icon.add_css_class ("purple");
-
-        var appstore_name = ((unboxing.Application) GLib.Application.get_default ()).get_appstore_name ();
-
-        repo_label = new Gtk.Label (_("Other apps from this distributor may appear in %s").printf (appstore_name));
-        repo_label.selectable = true;
-        repo_label.max_width_chars = 50;
-        repo_label.wrap = true;
-        repo_label.xalign = 0;
 
         permissions_image = new Gtk.Image () {
             valign = Gtk.Align.START
@@ -111,9 +94,9 @@ public class Unboxing.MainView : AbstractView {
 
         details_stack = new Gtk.Stack ();
         details_stack.vhomogeneous = false;
-        details_stack.add_named (loading_grid, "loading");
-        details_stack.add_named (details_grid, "details");
-        details_stack.visible_child_name = "loading";
+        //details_stack.add_named (loading_grid, "loading");
+        details_stack.add_child (details_grid);
+        details_stack.visible_child = details_grid;
 
         content_area.attach (details_stack, 0, 0);
 
@@ -132,65 +115,18 @@ public class Unboxing.MainView : AbstractView {
         install_button.clicked.connect (() => {
             install_request ();
         });
-    }
 
-    public void display_bundle_details (string size, bool has_repo, bool extra_repo) {
-        download_size_label.label = _("Install size may be up to %s").printf (size);
+        download_size_label.label = _("Missing components will be downloaded and installed");
 
-        if (has_repo) {
-            details_grid.attach (updates_icon, 0, 1);
-            details_grid.attach (updates_label, 1, 1);
-        }
-
-        if (extra_repo) {
-            details_grid.attach (repo_icon, 0, 2);
-            details_grid.attach (repo_label, 1, 2);
-        }
-
-        details_stack.visible_child_name = "details";
-    }
-
-    public void display_ref_details (string? size, bool extra_repo, FlatpakFile.PermissionsFlags permissions_flags) {
-        if (size != null) {
-            download_size_label.label = _("Download size may be up to %s").printf (size);
-        } else {
-            download_size_label.label = _("Unknown download size");
-        }
-
-        if (
-            FlatpakFile.PermissionsFlags.ESCAPE_SANDBOX in permissions_flags ||
-            FlatpakFile.PermissionsFlags.FILESYSTEM_FULL in permissions_flags ||
-            FlatpakFile.PermissionsFlags.SYSTEM_BUS in permissions_flags
-        ) {
-            permissions_image.icon_name = "security-low-symbolic";
-            permissions_image.add_css_class ("red");
-            permissions_label.label = _("Requests advanced permissions that could be used to violate your privacy or security");
-        } else if (
-            FlatpakFile.PermissionsFlags.DOWNLOADS_FULL in permissions_flags ||
-            FlatpakFile.PermissionsFlags.DOWNLOADS_READ in permissions_flags ||
-            FlatpakFile.PermissionsFlags.FILESYSTEM_OTHER in permissions_flags ||
-            FlatpakFile.PermissionsFlags.FILESYSTEM_READ in permissions_flags ||
-            FlatpakFile.PermissionsFlags.HOME_FULL in permissions_flags ||
-            FlatpakFile.PermissionsFlags.HOME_READ in permissions_flags
-        ) {
-            permissions_image.icon_name = "security-low-symbolic";
-            permissions_image.add_css_class ("yellow");
-            permissions_label.label = _("Requests file and folder permissions that could be used to violate your privacy");
-        } else {
-            permissions_image.icon_name = "security-high-symbolic";
-            permissions_image.add_css_class ("green");
-            permissions_label.label = _("Doesn't request advanced system permissions");
-        }
+        permissions_image.icon_name = "security-low-symbolic";
+        permissions_image.add_css_class ("red");
+        permissions_label.label = _("Runs unsandboxed - Permissions cannot be changed");
 
         details_grid.attach (permissions_image, 0, 1);
         details_grid.attach (permissions_label, 1, 1);
         details_grid.attach (updates_icon, 0, 2);
         details_grid.attach (updates_label, 1, 2);
 
-        if (extra_repo) {
-            details_grid.attach (repo_icon, 0, 3);
-            details_grid.attach (repo_label, 1, 3);
-        }
         details_stack.visible_child_name = "details";
     }
 }

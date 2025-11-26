@@ -16,65 +16,32 @@
  */
 
 public class Unboxing.SuccessView : AbstractView {
-    public enum SuccessType {
-        INSTALLED,
-        ALREADY_INSTALLED
-    }
 
     public string? app_name { get; construct; }
-    public SuccessType view_type { get; construct; }
 
-    public SuccessView (string? app_name, SuccessType type = SuccessType.INSTALLED) {
+    public SuccessView (string? app_name) {
         Object (
-            app_name: app_name,
-            view_type: type
+            app_name: app_name
         );
     }
 
     construct {
         badge.gicon = new ThemedIcon ("process-completed");
 
-        var app = (unboxing.Application) GLib.Application.get_default ();
-        var appstore_name = app.get_appstore_name ();
-        var file = ((unboxing.MainWindow) app.active_window).flatpak_file;
+        var app = (Unboxing.Application) GLib.Application.get_default ();
+        var files = ((Unboxing.MainWindow) app.active_window).files;
         string? secondary_label_string;
 
-        if (view_type == SuccessType.INSTALLED) {
-            if (app_name != null) {
-                primary_label.label = _("“%s” has been installed").printf (app_name);
-            } else {
-                primary_label.label = _("The app has been installed");
-            }
-
-            secondary_label_string = _("Open it any time from the Applications Menu.");
-
-        } else if (view_type == SuccessType.ALREADY_INSTALLED) {
-            if (app_name != null) {
-                primary_label.label = _("“%s” is already installed").printf (app_name);
-            } else {
-                primary_label.label = _("This app is already installed");
-            }
-
-            secondary_label_string = _("No changes were made.");
+        if (app_name != null) {
+            primary_label.label = _("“%s” has been installed").printf (app_name);
+        } else {
+            primary_label.label = _("The app has been installed");
         }
 
-        if (file is FlatpakRefFile) {
-            secondary_label_string += " ";
-            secondary_label_string += _("Visit %s for app information, updates, and to uninstall.").printf (
-                appstore_name
-            );
-        }
-
-        /// TRANSLATORS: "System Settings" is related to the title of https://github.com/elementary/switchboard, "Applications" is related to the title of https://github.com/elementary/switchboard-plug-applications. Note that this includes an ellipsis (…) in English to signify the action will be performed in a new window.
-        var settings_path = _("System Settings → Applications…");
-        var link_markup = "<a href='%s'>%s</a>".printf ("settings://applications/permissions", settings_path);
-
-        secondary_label_string += " ";
-        secondary_label_string += _("Permissions can be changed in %s").printf (link_markup);
-
+        secondary_label_string = _("Open it any time from the Applications Menu.");
         secondary_label.label = secondary_label_string;
 
-        var trash_check = new Gtk.CheckButton.with_label (_("Move ”%s” to Trash").printf (file.file.get_basename ()));
+        var trash_check = new Gtk.CheckButton.with_label (_("Move ”%s” to Trash").printf (files.length.to_string ()));
         content_area.attach (trash_check, 0, 0);
 
         var settings = new Settings ("io.github.teamcons.unboxing");
@@ -82,38 +49,28 @@ public class Unboxing.SuccessView : AbstractView {
 
         var close_button = new Gtk.Button.with_label (_("Close"));
 
-        var open_button = new Gtk.Button.with_label (_("Open App"));
-        open_button.add_css_class (Granite.STYLE_CLASS_SUGGESTED_ACTION);
+        //var open_button = new Gtk.Button.with_label (_("Open App"));
+        //open_button.add_css_class (Granite.STYLE_CLASS_SUGGESTED_ACTION);
 
         button_box.append (close_button);
-        button_box.append (open_button);
+        //button_box.append (open_button);
 
-        ((unboxing.MainWindow) app.active_window).default_widget = open_button;
+        ((Unboxing.MainWindow) app.active_window).default_widget = close_button;
 
         close_button.clicked.connect (() => {
             if (trash_check.active) {
-                trash_file (file);
+                Utils.trash_files (files);
             }
 
             app.quit ();
         });
 
-        open_button.clicked.connect (() => {
-            if (trash_check.active) {
-                trash_file (file);
-            }
+        //  open_button.clicked.connect (() => {
+        //      if (trash_check.active) {
+        //          trash_file (files);
+        //      }
 
-            app.activate_action ("launch", null);
-        });
-    }
-
-    private void trash_file (FlatpakFile file) {
-        file.file.trash_async.begin (GLib.Priority.DEFAULT, null, (obj, res) => {
-            try {
-                file.file.trash_async.end (res);
-            } catch (Error e) {
-                warning (e.message);
-            }
-        });
+        //      app.activate_action ("launch", null);
+        //  });
     }
 }

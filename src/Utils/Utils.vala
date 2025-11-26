@@ -3,7 +3,7 @@
 * SPDX-FileCopyrightText: {{YEAR}} {{DEVELOPER_NAME}} <{{DEVELOPER_EMAIL}}>
 */
 
-namespace Unboxing {
+namespace Unboxing.Utils {
 
     public static unowned string status_to_title (Pk.Status status) {
         // From https://github.com/elementary/appcenter/blob/master/src/Core/ChangeInformation.vala#L51
@@ -80,5 +80,51 @@ namespace Unboxing {
             default:
                 return _("Installing");
         }
+    }
+
+    public static unowned void trash_files (string[] files) {
+        foreach (var file in files) {
+            var f = File.new_for_path (file);
+
+            f.trash_async.begin (GLib.Priority.DEFAULT, null, (obj, res) => {
+                try {
+                    f.trash_async.end (res);
+                } catch (Error e) {
+                    warning (e.message);
+                }
+            });
+        }
+    }
+
+
+    public static string error_to_title (Error error) {
+        print (error.code.to_string ());
+        print (Pk.ClientError.FAILED_AUTH.to_string ());
+
+
+        if (error.domain == Pk.ClientError.quark ()) {
+            switch (error.code) {
+                case Pk.ClientError.CANNOT_START_DAEMON:
+                    return _("Cannot start daemon");
+                case Pk.ClientError.DECLINED_INTERACTION:
+                    return _("Declined interaction");
+                case Pk.ClientError.DECLINED_SIMULATION:
+                    return _("Declined sim");
+                case Pk.ClientError.FAILED:
+                    return _("Failed");
+                case Pk.ClientError.FAILED_AUTH:
+                    return _("Auth fail");
+                case Pk.ClientError.INVALID_FILE:
+                    return _("File bad");
+                case Pk.ClientError.INVALID_INPUT:
+                    return _("Input bad");
+                case Pk.ClientError.NOT_SUPPORTED:
+                    return _("Not supported");
+                default:
+                    return _("idk, client error");
+            }
+        }
+
+        return error.message ?? _("An unknown error occurred.");
     }
 }

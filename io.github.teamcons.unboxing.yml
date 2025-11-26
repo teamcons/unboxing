@@ -1,7 +1,7 @@
 app-id: io.github.teamcons.unboxing
-runtime: io.github.teamcons.Platform
+runtime: io.elementary.Platform
 runtime-version: '8'
-sdk: io.github.teamcons.Sdk
+sdk: io.elementary.Sdk
 command: io.github.teamcons.unboxing
 
 finish-args:

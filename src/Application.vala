@@ -20,7 +20,14 @@
 
 public class Unboxing.Application : Gtk.Application {
 
-    private Cancellable cancellable;
+    private const string XDEB = "application/x-deb";
+    private const string DEBPKG = "application/vnd.debian.binary-package";
+    private const string[] SUPPORTED_CONTENT_TYPES = {
+        XDEB,
+        DEBPKG
+    };
+
+    private Unboxing.MainWindow? main_window;
 
     public Application () {
         GLib.Intl.setlocale (LocaleCategory.ALL, "");
@@ -32,41 +39,6 @@ public class Unboxing.Application : Gtk.Application {
             application_id: "io.github.teamcons.unboxing",
             flags: ApplicationFlags.HANDLES_OPEN
         );
-    }
-
-    protected void old_open (File[] files, string hint) {
-        if (files.length == 0) {
-            return;
-        }
-
-        var file = files[0];
-        if (get_windows ().length () > 0) {
-            get_windows ().data.present ();
-            return;
-        }
-
-        hold ();
-        open_file.begin (file);
-    }
-
-    private async void open_file (File file) {
-        unboxing.MainWindow main_window = null;
-
-        main_window = new MainWindow (this, file);
-        main_window.present ();
-
-        var launch_action = new SimpleAction ("launch", null);
-
-        add_action (launch_action);
-
-        launch_action.activate.connect (() => {
-            main_window.flatpak_file.launch.begin ((obj, res) => {
-                main_window.flatpak_file.launch.end (res);
-                main_window.close ();
-            });
-        });
-
-        release ();
     }
 
     protected override void startup () {
@@ -83,25 +55,13 @@ public class Unboxing.Application : Gtk.Application {
         });
 
         var quit_action = new SimpleAction ("quit", null);
-
         add_action (quit_action);
-
         set_accels_for_action ("app.quit", {"<Control>q"});
-
         quit_action.activate.connect (quit);
     }
 
     protected override void activate () {
 
-    }
-
-    public string get_appstore_name () {
-        var appinfo = GLib.AppInfo.get_default_for_uri_scheme ("appstream");
-        if (appinfo != null) {
-            return appinfo.get_name ();
-        } else {
-            return _("your software center");
-        }
     }
 
     public static int main (string[] args) {
@@ -114,16 +74,12 @@ public class Unboxing.Application : Gtk.Application {
         return app.run (args);
     }
 
-
-
-
-
-
-
     protected override void open (File[] files, string hint) {
-        
-        this.hold();
-        var flags = Pk.Bitfield.from_enums (Pk.TransactionFlag.ALLOW_DOWNGRADE, Pk.TransactionFlag.ALLOW_REINSTALL, Pk.TransactionFlag.SIMULATE);
+        if (files.length == 0) {
+            return;
+        }
+
+        this.hold ();
 
         string[] filelist = {};
         foreach (var file in files) {
@@ -131,43 +87,12 @@ public class Unboxing.Application : Gtk.Application {
             print (file.get_path ());
         }
 
-        var task = new Pk.Task ();
-        cancellable = new Cancellable ();
-
-        task.install_files_async.begin (
-                filelist,
-                cancellable,
-                progress_cb,
-                async_cb);
-    }
-
-    public void progress_cb (Pk.Progress progress, Pk.ProgressType type) {
-        print ("\n" + Unboxing.status_to_title (progress.status) + "|");
-        print ("ROLE: " + progress.get_role ().to_localised_present () + " | ");
-        print ("PERCENT: " + progress.percentage.to_string () + " | ");
-    }
-
-    // Delegate
-    public void async_cb(Object? object, AsyncResult res)
-    {
-        print ("cb called");
-        var task = object as Pk.Task;
-        assert_nonnull(task);
-
-    
-        try
-        {
-            var result = task.install_files_async.end(res);
-            print (result.role.to_localised_present () + "\n");
-            print (result.get_exit_code ().to_string () + "\n");
-            print ("finished lol");
-
-
+        if (main_window == null) {
+            main_window = new Unboxing.MainWindow (this, filelist);
         }
-        catch (Error e)
-        {
-            print (e.message);
-        }
+
+        main_window.present ();
+
     }
 
 
