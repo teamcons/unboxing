@@ -73,6 +73,15 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
         add_css_class ("dialog");
         add_css_class (Granite.STYLE_CLASS_MESSAGE_DIALOG);
 
+
+        if (!Utils.is_package (file)) {
+            var message = _("This does not appear to be a valid package file");
+            var error_view = new ErrorView (-1, message);
+            stack.add_child (error_view);
+            stack.visible_child = error_view;
+            return;
+        }
+
         progress_view = new ProgressView ();
         stack.add_child (progress_view);
 
@@ -97,9 +106,9 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
         Granite.Services.Application.set_progress.begin (percentage);
     }
 
-    private void on_install_failed (Error error) {
+    private void on_install_failed (int error_code, string? error_message) {
 
-        var error_view = new ErrorView (error);
+        var error_view = new ErrorView (error_code, error_message);
         stack.add_child (error_view);
         stack.visible_child = error_view;
 
@@ -115,9 +124,8 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
         Granite.Services.Application.set_progress_visible.begin (false);
 
         if (!is_active) {
-            var notification = new Notification (_("App installed"));
+            var notification = new Notification (_("Package installed"));
             notification.set_body (_("Installed “%s”").printf (app_name));
-
             application.send_notification ("Installed", notification);
         }
     }

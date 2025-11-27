@@ -16,22 +16,23 @@
  */
 
 public class Unboxing.ErrorView : AbstractView {
-    public Error error { get; construct; }
+    public int error_code { get; construct; }
+    public string error_message { get; construct; }
 
-    public ErrorView (Error error) {
+    public ErrorView (int error_code, string? error_message) {
         Object (
-            error: error
+            error_code: error_code,
+            error_message: error_message
         );
     }
 
     construct {
         badge.gicon = new ThemedIcon ("dialog-error");
 
-        primary_label.label = _("Install failed");
+        primary_label.label = _("Installation failed");
+        secondary_label.label = Utils.error_to_title (error_code);
 
-        secondary_label.label = Utils.error_to_title (error);
-
-        var details_view = new Gtk.Label (error.message) {
+        var details_view = new Gtk.Label (error_message ?? _("An unknown error occurred.")) {
             selectable = true,
             wrap = true,
             xalign = 0,

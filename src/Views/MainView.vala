@@ -126,7 +126,5 @@ public class Unboxing.MainView : AbstractView {
         details_grid.attach (permissions_label, 1, 1);
         details_grid.attach (updates_icon, 0, 2);
         details_grid.attach (updates_label, 1, 2);
-
-        details_stack.visible_child_name = "details";
     }
 }

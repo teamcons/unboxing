@@ -85,24 +85,13 @@ public class Unboxing.Application : Gtk.Application {
                 "dialog-warning",
                 Gtk.ButtonsType.CLOSE);
 
+            dialog.application = this;
             dialog.present ();
             return;
         }
 
-        var file = files[0];
-
-        if (!Utils.is_package (file)) {
-            var dialog = new Granite.MessageDialog.with_image_from_icon_name (_("Invalid file"),
-                _("%s is not a valid package").printf (file.get_basename ()),
-                "dialog-warning",
-                Gtk.ButtonsType.CLOSE);
-
-            dialog.present ();
-            return;
-        }
-
-        hold ();
-        main_window = new Unboxing.MainWindow (this, file);
+        this.hold ();
+        main_window = new Unboxing.MainWindow (this, files[0]);
         main_window.present ();
     }
 }

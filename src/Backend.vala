@@ -37,7 +37,7 @@ public class Unboxing.Backend : Object {
     Cancellable current_cancellable = null;
 
     public signal void progress_changed (string status, int percentage);
-    public signal void installation_failed (Error error);
+    public signal void installation_failed (int error_code, string? error_message);
     public signal void installation_succeeded ();
 
     construct {
@@ -97,7 +97,7 @@ public class Unboxing.Backend : Object {
         {
             print (e.domain.to_string ());
             print (e.message);
-            installation_failed (e);
+            installation_failed (e.code, e.message);
         }
 
         busy = false;
