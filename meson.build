@@ -1,7 +1,7 @@
 project(
     'io.github.teamcons.unboxing', 
     'vala', 'c',
-    version: '6.3.1',
+    version: '1.0.0',
     meson_version: '>= 0.59'
 )
 
@@ -25,8 +25,8 @@ config_file = configure_file(
 executable(
     meson.project_name(),
     config_file,
-    'src/Utils/AsyncMutex.vala',
-    'src/Utils/Utils.vala',
+    'src/Utils/EnumToLocText.vala',
+    'src/Utils/FileOperations.vala',
     'src/Views/AbstractView.vala',
     'src/Views/ErrorView.vala',
     'src/Views/MainView.vala',
@@ -34,14 +34,14 @@ executable(
     'src/Views/SuccessView.vala',
     'src/Application.vala',
     'src/MainWindow.vala',
+    'src/Welcome.vala',
     'src/Backend.vala',
     dependencies: [
         dependency('packagekit-glib2'),
         dependency ('glib-2.0'),
         dependency ('gobject-2.0'),
         dependency ('granite-7'),
-        dependency ('gtk4'),
-        dependency ('libxml-2.0'),
+        dependency ('gtk4')
     ],
     install : true
 )

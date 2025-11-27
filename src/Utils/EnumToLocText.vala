@@ -82,21 +82,6 @@ namespace Unboxing.Utils {
         }
     }
 
-    public static unowned void trash_files (string[] files) {
-        foreach (var file in files) {
-            var f = File.new_for_path (file);
-
-            f.trash_async.begin (GLib.Priority.DEFAULT, null, (obj, res) => {
-                try {
-                    f.trash_async.end (res);
-                } catch (Error e) {
-                    warning (e.message);
-                }
-            });
-        }
-    }
-
-
     public static string error_to_title (Error error) {
         print (error.code.to_string ());
         print (Pk.ClientError.FAILED_AUTH.to_string ());

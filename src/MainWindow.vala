@@ -20,7 +20,7 @@
 
 public class Unboxing.MainWindow : Gtk.ApplicationWindow {
 
-    public string[] files;
+    public File file { get; private set; }
 
     private Gtk.Stack stack;
     private MainView main_view;
@@ -31,18 +31,18 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
     public string app_id = "io.github.teamcons.unboxing";
     public string app_name = "io.github.teamcons.unboxing";
 
-    public MainWindow (Gtk.Application application, string[] filelist) {
+    public MainWindow (Gtk.Application application, File file) {
         Object (
             application: application,
             icon_name: "io.github.teamcons.unboxing",
             resizable: false,
-            title: _("Install Untrusted App")
+            title: _("Install Untrusted Package"),
+            file: file
         );
-        files = filelist;
     }
 
     construct {
-        backend = new Unboxing.Backend ();
+        backend = Backend.get_instance ();
 
         var image = new Gtk.Image.from_icon_name ("io.github.teamcons.unboxing") {
             pixel_size = 48,
@@ -84,7 +84,7 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
     }
 
     private void on_install_button_clicked () {
-        backend.install (files);
+        backend.install ({file});
         stack.visible_child = progress_view;
 
         Granite.Services.Application.set_progress_visible.begin (true);
@@ -116,25 +116,9 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
 
         if (!is_active) {
             var notification = new Notification (_("App installed"));
-            if (app_name != null) {
-                notification.set_body (_("Installed “%s”").printf (app_name));
-            } else {
-                notification.set_body (_("The app was installed"));
-            }
+            notification.set_body (_("Installed “%s”").printf (app_name));
 
-            var icon = get_application_icon ();
-            if (icon != null) {
-                notification.set_icon (icon);
-            }
-            application.send_notification ("installed", notification);
+            application.send_notification ("Installed", notification);
         }
-    }
-
-    private GLib.Icon? get_application_icon () {
-        var desktop_info = new GLib.DesktopAppInfo (app_id + ".desktop");
-        if (desktop_info != null) {
-            return desktop_info.get_icon ();
-        }
-        return null;
     }
 }

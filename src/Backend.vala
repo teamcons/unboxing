@@ -19,7 +19,19 @@
 */
 
 public class Unboxing.Backend : Object {
+
+    private static Backend? instance;
+
+    public static Backend get_instance () {
+        if (instance == null) {
+            instance = new Backend ();
+        }
+        return instance;
+    }
     
+    
+    public File[] files { get; private set; }
+
     public bool busy = false;
     Pk.Task task = new Pk.Task ();
     Cancellable current_cancellable = null;
@@ -36,8 +48,14 @@ public class Unboxing.Backend : Object {
         });
     }
 
-    public void install (string[] files) {
+    public void install (File[] files) {
         busy = true;
+
+        string[] filelist = {};
+        foreach (var file in files) {
+            filelist += file.get_path ();
+            print (file.get_path ());
+        }
 
         task = new Pk.Task () {
             allow_downgrade = true,
@@ -46,7 +64,7 @@ public class Unboxing.Backend : Object {
 
         current_cancellable = new Cancellable ();
         task.install_files_async.begin (
-                files,
+                filelist,
                 current_cancellable,
                 progress_cb,
                 async_cb);
@@ -63,13 +81,13 @@ public class Unboxing.Backend : Object {
     }
 
     // Delegate
-    public void async_cb(Object? object, AsyncResult res)
+    public void async_cb (Object? object, AsyncResult res)
     {
         print ("\ncb called\n");
         var task = object as Pk.Task;
 
         try {
-            var result = task.install_files_async.end(res);
+            var result = task.install_files_async.end (res);
             print (result.role.to_localised_present () + "|");
             print (result.get_exit_code ().to_string () + "|");
             print (" Finished lol \n");

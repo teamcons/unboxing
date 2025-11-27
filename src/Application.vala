@@ -20,9 +20,9 @@
 
 public class Unboxing.Application : Gtk.Application {
 
-    private const string XDEB = "application/x-deb";
-    private const string DEBPKG = "application/vnd.debian.binary-package";
-    private const string[] SUPPORTED_CONTENT_TYPES = {
+    public const string XDEB = "application/x-deb";
+    public const string DEBPKG = "application/vnd.debian.binary-package";
+    public const string[] SUPPORTED_CONTENT_TYPES = {
         XDEB,
         DEBPKG
     };
@@ -79,21 +79,30 @@ public class Unboxing.Application : Gtk.Application {
             return;
         }
 
-        this.hold ();
+        if (main_window != null) {
+            var dialog = new Granite.MessageDialog.with_image_from_icon_name (_("There Are Ongoing Operations"),
+                _("Please wait until all operations are finished"),
+                "dialog-warning",
+                Gtk.ButtonsType.CLOSE);
 
-        string[] filelist = {};
-        foreach (var file in files) {
-            filelist += file.get_path ();
-            print (file.get_path ());
+            dialog.present ();
+            return;
         }
 
-        if (main_window == null) {
-            main_window = new Unboxing.MainWindow (this, filelist);
+        var file = files[0];
+
+        if (!Utils.is_package (file)) {
+            var dialog = new Granite.MessageDialog.with_image_from_icon_name (_("Invalid file"),
+                _("%s is not a valid package").printf (file.get_basename ()),
+                "dialog-warning",
+                Gtk.ButtonsType.CLOSE);
+
+            dialog.present ();
+            return;
         }
 
+        hold ();
+        main_window = new Unboxing.MainWindow (this, file);
         main_window.present ();
-
     }
-
-
 }
