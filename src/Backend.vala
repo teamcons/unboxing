@@ -37,7 +37,7 @@ public class Unboxing.Backend : Object {
     Cancellable current_cancellable = null;
 
     public signal void progress_changed (string status, int percentage);
-    public signal void installation_failed (int error_code, string? error_message);
+    public signal void installation_failed (string error_title, string? error_message);
     public signal void installation_succeeded ();
 
     construct {
@@ -48,14 +48,8 @@ public class Unboxing.Backend : Object {
         });
     }
 
-    public void install (File[] files) {
+    public void install (string[] files) {
         busy = true;
-
-        string[] filelist = {};
-        foreach (var file in files) {
-            filelist += file.get_path ();
-            print (file.get_path ());
-        }
 
         task = new Pk.Task () {
             allow_downgrade = true,
@@ -64,7 +58,7 @@ public class Unboxing.Backend : Object {
 
         current_cancellable = new Cancellable ();
         task.install_files_async.begin (
-                filelist,
+                files,
                 current_cancellable,
                 progress_cb,
                 async_cb);
@@ -97,7 +91,12 @@ public class Unboxing.Backend : Object {
         {
             print (e.domain.to_string ());
             print (e.message);
-            installation_failed (e.code, e.message);
+
+            string? title = "yoy";
+
+            print (((Pk.Error)e).get_details ());
+
+            installation_failed (title ?? _("Unknown error"), e.message ?? _("An unknown error occurred."));
         }
 
         busy = false;

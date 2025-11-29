@@ -82,11 +82,9 @@ namespace Unboxing.Utils {
         }
     }
 
-    public static string error_to_title (int code) {
-        print (code.to_string ());
-        print (Pk.ClientError.FAILED_AUTH.to_string ());
+    public static string error_to_title (Error error) {
 
-        switch (code) {
+        switch (error.code) {
             case Pk.ClientError.CANNOT_START_DAEMON:
                 return _("Cannot start daemon");
             case Pk.ClientError.DECLINED_INTERACTION:

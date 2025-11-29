@@ -42,6 +42,7 @@ namespace Unboxing.Utils {
         }
 
         var mimetype = info.get_content_type ();
+
         if (mimetype == null) {
             warning ("Failed to get content type");
             return false;

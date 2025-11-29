@@ -16,12 +16,12 @@
  */
 
 public class Unboxing.ErrorView : AbstractView {
-    public int error_code { get; construct; }
+    public string error_title { get; construct; }
     public string error_message { get; construct; }
 
-    public ErrorView (int error_code, string? error_message) {
+    public ErrorView (string error_title, string error_message) {
         Object (
-            error_code: error_code,
+            error_title: error_title,
             error_message: error_message
         );
     }
@@ -30,9 +30,9 @@ public class Unboxing.ErrorView : AbstractView {
         badge.gicon = new ThemedIcon ("dialog-error");
 
         primary_label.label = _("Installation failed");
-        secondary_label.label = Utils.error_to_title (error_code);
+        secondary_label.label = error_title;
 
-        var details_view = new Gtk.Label (error_message ?? _("An unknown error occurred.")) {
+        var details_view = new Gtk.Label (error_message) {
             selectable = true,
             wrap = true,
             xalign = 0,

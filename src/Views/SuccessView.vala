@@ -29,7 +29,7 @@ public class Unboxing.SuccessView : AbstractView {
         badge.gicon = new ThemedIcon ("process-completed");
 
         var app = (Unboxing.Application) GLib.Application.get_default ();
-        var file = ((Unboxing.MainWindow) app.active_window).file;
+        var file =  File.new_for_path (((Unboxing.MainWindow) app.active_window).filepath);;
         //string? secondary_label_string;
 
         primary_label.label = _("“%s” has been installed").printf (app_name);

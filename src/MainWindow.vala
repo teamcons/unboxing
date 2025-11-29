@@ -20,7 +20,7 @@
 
 public class Unboxing.MainWindow : Gtk.ApplicationWindow {
 
-    public File file { get; private set; }
+    public string? filepath { get; construct; }
 
     private Gtk.Stack stack;
     private MainView main_view;
@@ -31,13 +31,13 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
     public string app_id = "io.github.teamcons.unboxing";
     public string app_name = "io.github.teamcons.unboxing";
 
-    public MainWindow (Gtk.Application application, File file) {
+    public MainWindow (Gtk.Application application, string? filepath) {
         Object (
             application: application,
             icon_name: "io.github.teamcons.unboxing",
             resizable: false,
             title: _("Install Untrusted Package"),
-            file: file
+            filepath: filepath
         );
     }
 
@@ -73,10 +73,12 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
         add_css_class ("dialog");
         add_css_class (Granite.STYLE_CLASS_MESSAGE_DIALOG);
 
+        var file = File.new_for_path (filepath);
 
         if (!Utils.is_package (file)) {
-            var message = _("This does not appear to be a valid package file");
-            var error_view = new ErrorView (-1, message);
+            var title = _("This does not appear to be a valid package file");
+            var message = _("%s does not belong to supported mimetypes").printf (file.get_basename ());
+            var error_view = new ErrorView (title, message);
             stack.add_child (error_view);
             stack.visible_child = error_view;
             return;
@@ -93,7 +95,7 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
     }
 
     private void on_install_button_clicked () {
-        backend.install ({file});
+        backend.install ({filepath});
         stack.visible_child = progress_view;
 
         Granite.Services.Application.set_progress_visible.begin (true);
@@ -106,9 +108,9 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
         Granite.Services.Application.set_progress.begin (percentage);
     }
 
-    private void on_install_failed (int error_code, string? error_message) {
+    private void on_install_failed (string error_title, string? error_message) {
 
-        var error_view = new ErrorView (error_code, error_message);
+        var error_view = new ErrorView (error_title, error_message);
         stack.add_child (error_view);
         stack.visible_child = error_view;
 
