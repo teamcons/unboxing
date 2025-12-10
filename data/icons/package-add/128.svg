@@ -25,8 +25,8 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="4.6132813"
-     inkscape:cx="65.463167"
-     inkscape:cy="61.019475"
+     inkscape:cx="65.463166"
+     inkscape:cy="61.23624"
      inkscape:current-layer="svg3049"
      inkscape:window-width="1920"
      inkscape:window-height="1129"
@@ -612,6 +612,15 @@
        fx="24.837126"
        r="15.644737"
        cy="36.421127"
+       cx="24.837126" /><radialGradient
+       gradientTransform="matrix(-0.52995454,0,0,-0.35307735,22.512547,21.835677)"
+       gradientUnits="userSpaceOnUse"
+       xlink:href="#linearGradient3811"
+       id="radialGradient3862-3-0-5"
+       fy="36.421127"
+       fx="24.837126"
+       r="15.644737"
+       cy="36.421127"
        cx="24.837126" /></defs><metadata
      id="metadata3054"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
@@ -767,7 +776,7 @@
        id="path3044"
        style="fill:#d70751;stroke-width:1.18771" /></g><g
      id="g75"
-     transform="translate(88.000003,83.267345)"><g
+     transform="matrix(1.5000002,0,0,1.5000002,67.999996,60.901008)"><g
        id="layer1"
        transform="matrix(-1.8373673,0,0,1.8324653,41.179383,18.161909)"
        style="stroke-width:0.544985"><path
