@@ -84,7 +84,9 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
             return;
         }
 
-        progress_view = new ProgressView ();
+        progress_view = new ProgressView () {
+            app_name = file.get_basename ()
+        };
         stack.add_child (progress_view);
 
         main_view.install_request.connect (on_install_button_clicked);

@@ -29,13 +29,13 @@ public class Unboxing.SuccessView : AbstractView {
         badge.gicon = new ThemedIcon ("process-completed");
 
         var app = (Unboxing.Application) GLib.Application.get_default ();
-        var file =  File.new_for_path (((Unboxing.MainWindow) app.active_window).filepath);;
+        var file = File.new_for_path (((Unboxing.MainWindow) app.active_window).filepath);
         //string? secondary_label_string;
 
         primary_label.label = _("“%s” has been installed").printf (app_name);
 
         //secondary_label_string = _("Open it any time from the Applications Menu.");
-        //secondary_label.label = secondary_label_string;
+        secondary_label.label = _("Applications will appear normally in the Applications Menu.");
 
         var trash_check = new Gtk.CheckButton.with_label (_("Move ”%s” to Trash").printf (file.get_basename ()));
         content_area.attach (trash_check, 0, 0);

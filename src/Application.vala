@@ -87,13 +87,7 @@ public class Unboxing.Application : Gtk.Application {
         }
 
         if (main_window != null) {
-            var dialog = new Granite.MessageDialog.with_image_from_icon_name (_("There Are Ongoing Operations"),
-                _("Please wait until all operations are finished"),
-                "dialog-warning",
-                Gtk.ButtonsType.CLOSE);
-
-            dialog.application = this;
-            dialog.present ();
+            ongoing_dialog ();
             return;
         }
         var file = files[0];
@@ -102,5 +96,19 @@ public class Unboxing.Application : Gtk.Application {
         this.hold ();
         main_window = new Unboxing.MainWindow (this, file.get_path ());
         main_window.present ();
+    }
+
+    private void ongoing_dialog () {
+        var dialog = new Granite.MessageDialog.with_image_from_icon_name (_("There Are ongoing operations"),
+            _("Please wait until all operations are finished"),
+            "dialog-warning",
+            Gtk.ButtonsType.CLOSE);
+
+        dialog.response.connect ((response_id) => {
+            dialog.destroy ();
+        });
+
+        dialog.application = this;
+        dialog.present ();
     }
 }
