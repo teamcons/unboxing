@@ -60,20 +60,24 @@ public class Unboxing.Application : Gtk.Application {
         add_action (quit_action);
         set_accels_for_action ("app.quit", {"<Control>q"});
         quit_action.activate.connect (quit);
+
+        this.window_removed.connect (() => {
+            if (get_windows ().length () == 0) {
+                quit ();
+            }});
     }
 
     protected override void activate () {
-        print ("activate");
-
+        debug ("activate");
         if (welcome == null) {
             welcome = new Unboxing.Welcome (this);
             welcome.show ();
             welcome.present ();
-            welcome.open_this.connect (
-                (file) =>
-                                    {open ({file}, "deb");
-                                    welcome.close ();
-                                    welcome = null;});
+            welcome.open_this.connect ((file) => {
+                open ({file}, "deb");
+                welcome.close ();
+                welcome = null;
+            });
         }
     }
 
