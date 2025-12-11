@@ -52,6 +52,28 @@ namespace Unboxing.Utils {
     }
 
     public static unowned File[]? detected_in_downloads () {
+        var downloads = Environment.get_user_special_dir (Environment.UserDirectory.DOWNLOAD);
+        File[] filelist = {}
+
+        try {
+            var downloads_content = Dir.open (downloads);
+
+            string? item = null;
+            while ((item = downloads_content.read_name ()) != null) {
+                print (item);
+                string path = Path.build_filename (downloads, item);
+                File file = File.new_for_path (path);
+
+                if (is_package (file)) {
+                    filelist += file;
+                }
+            }
+            return filelist;
+
+        } catch (Error e) {
+            warning ("Cannot read %s: %s\n", downloads, e.message);
+        }
+
         return null;
     }
 }

@@ -5,3 +5,4 @@ src/Views/SuccessView.vala
 src/Application.vala
 src/Welcome.vala
 src/MainWindow.vala
+src/Utils/EnumToLocText
