@@ -97,6 +97,11 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
     }
 
     private void on_install_button_clicked () {
+        if (Application.backend.busy) {
+            Application.ongoing_dialog ();
+            return;
+        }
+
         backend.install ({filepath});
         stack.visible_child = progress_view;
 

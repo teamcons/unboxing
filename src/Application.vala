@@ -86,19 +86,15 @@ public class Unboxing.Application : Gtk.Application {
             return;
         }
 
-        if (main_window != null) {
-            ongoing_dialog ();
-            return;
-        }
         var file = files[0];
         print (file.get_basename ());
 
         this.hold ();
-        main_window = new Unboxing.MainWindow (this, file.get_path ());
+        var main_window = new Unboxing.MainWindow (this, file.get_path ());
         main_window.present ();
     }
 
-    private void ongoing_dialog () {
+    public static void ongoing_dialog () {
         var dialog = new Granite.MessageDialog.with_image_from_icon_name (_("There Are ongoing operations"),
             _("Please wait until all operations are finished"),
             "dialog-warning",

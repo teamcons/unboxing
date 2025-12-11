@@ -61,7 +61,7 @@ public class Unboxing.Welcome : Gtk.ApplicationWindow {
 
         var support_button = new Gtk.LinkButton.with_label ("https://ko-fi.com/teamcons", _("Support us!")) {
             valign = Gtk.Align.END,
-            margin_bottom = 24
+            margin_bottom = 6
         };
 
         view.append (placeholder);

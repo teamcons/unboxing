@@ -31,8 +31,8 @@ public class Unboxing.Backend : Object {
     
     
     public File[] files { get; private set; }
+    public bool busy { get; private set; default = false};
 
-    public bool busy = false;
     Pk.Task task = new Pk.Task ();
     Cancellable current_cancellable = null;
 
