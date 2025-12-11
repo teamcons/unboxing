@@ -27,13 +27,16 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/elementary/unboxing/6.2.2/data/screenshot.png</image>
+      <caption>A welcome screen</caption>
+      <image>https://raw.githubusercontent.com/teamcons/unboxing/main/data/screenshots/welcome.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/elementary/unboxing/6.2.2/data/screenshot-progress.png</image>
+      <caption>The dialog before installation</caption>
+      <image>https://raw.githubusercontent.com/teamcons/unboxing/main/data/screenshots/dialog.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/elementary/unboxing/6.2.2/data/screenshot-success.png</image>
+      <caption>The final dialog</caption>
+      <image>https://raw.githubusercontent.com/teamcons/unboxing/main/data/screenshots/finish.png</image>
     </screenshot>
   </screenshots>
 
