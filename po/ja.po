@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.teamcons.unboxing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 20:24+0100\n"
+"POT-Creation-Date: 2025-12-11 20:28+0100\n"
 "PO-Revision-Date: 2024-10-10 12:16+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/desktop/"
@@ -139,7 +139,7 @@ msgstr ""
 
 #: src/Welcome.vala:73
 #, fuzzy, c-format
-msgid "Open %s"
+msgid "Open “%s”"
 msgstr "アプリを開く"
 
 #. -------- --------
@@ -178,7 +178,7 @@ msgstr "適切な flatpak/flatpakref ファイルではない可能性があり�
 
 #: src/MainWindow.vala:67
 #, c-format
-msgid "%s does not belong to supported mimetypes"
+msgid "“%s” does not belong to supported mimetypes"
 msgstr ""
 
 #: src/MainWindow.vala:88

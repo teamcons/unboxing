@@ -64,7 +64,7 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
 
         if (!Utils.is_package (file)) {
             var title = _("This does not appear to be a valid package file");
-            var message = _("%s does not belong to supported mimetypes").printf (file.get_basename ());
+            var message = _("“%s” does not belong to supported mimetypes").printf (file.get_basename ());
             var error_view = new ErrorView (title, message);
             stack.add_child (error_view);
             stack.visible_child = error_view;

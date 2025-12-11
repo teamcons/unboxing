@@ -70,7 +70,7 @@ public class Unboxing.Welcome : Gtk.ApplicationWindow {
                 var open_package = placeholder.append_button (
             new ThemedIcon (
                 "application-vnd.debian.binary-package"),
-            _("Open %s").printf (file.get_basename ()),
+            _("Open “%s”").printf (file.get_basename ()),
                 "%s".printf (file.get_path ()));
 
                 open_package.clicked.connect (() => {open_this (file);});

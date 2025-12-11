@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.teamcons.unboxing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 20:24+0100\n"
+"POT-Creation-Date: 2025-12-11 20:28+0100\n"
 "PO-Revision-Date: 2022-09-10 13:23+0000\n"
 "Last-Translator: Aga Ismael <agaesmaeel@gmail.com>\n"
 "Language-Team: Kurdish (Central) <https://l10n.elementary.io/projects/"
@@ -139,7 +139,7 @@ msgstr ""
 
 #: src/Welcome.vala:73
 #, fuzzy, c-format
-msgid "Open %s"
+msgid "Open “%s”"
 msgstr "کردنەوەی ئەپ"
 
 #. -------- --------
@@ -177,7 +177,7 @@ msgstr ""
 
 #: src/MainWindow.vala:67
 #, c-format
-msgid "%s does not belong to supported mimetypes"
+msgid "“%s” does not belong to supported mimetypes"
 msgstr ""
 
 #: src/MainWindow.vala:88

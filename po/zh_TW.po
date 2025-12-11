@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.github.teamcons.unboxing\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-11 20:24+0100\n"
+"POT-Creation-Date: 2025-12-11 20:28+0100\n"
 "PO-Revision-Date: 2024-09-07 17:04+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
@@ -138,7 +138,7 @@ msgstr ""
 
 #: src/Welcome.vala:73
 #, fuzzy, c-format
-msgid "Open %s"
+msgid "Open “%s”"
 msgstr "開啟應用程式"
 
 #. -------- --------
@@ -177,7 +177,7 @@ msgstr "這看起來不是有效的 flatpak/flatpakref 檔案"
 
 #: src/MainWindow.vala:67
 #, c-format
-msgid "%s does not belong to supported mimetypes"
+msgid "“%s” does not belong to supported mimetypes"
 msgstr ""
 
 #: src/MainWindow.vala:88
