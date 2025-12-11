@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-31 18:46+0000\n"
+"POT-Creation-Date: 2025-12-11 21:13+0100\n"
 "PO-Revision-Date: 2020-10-21 18:15+0000\n"
 "Last-Translator: Prachi Joshi <josprachi@yahoo.com>\n"
 "Language-Team: Marathi <https://l10n.elementary.io/projects/desktop/unboxing-"
@@ -19,53 +19,75 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 3.9.1\n"
 
-#: data/unboxing.metainfo.xml.in:9 data/unboxing.desktop.in:3
-msgid "unboxing"
+#: data/unboxing.metainfo.xml.in:10 data/unboxing.desktop.in:3
+#, fuzzy
+msgid "Unboxing"
 msgstr "साईड लोड"
 
-#: data/unboxing.metainfo.xml.in:10 data/unboxing.desktop.in:4
+#: data/unboxing.metainfo.xml.in:11 data/unboxing.desktop.in:4
 msgid "Install apps downloaded from the Internet"
 msgstr "इंटरनेट वरून डाउनलोड केलेले अ‍ॅप्स स्थापित करा"
 
-#: data/unboxing.metainfo.xml.in:12
+#: data/unboxing.metainfo.xml.in:13
 msgid ""
-"unboxing Flatpak apps per user and automatically add their remotes to "
-"AppCenter. unboxing shows important information about apps before you "
-"install like their download size."
-msgstr ""
-"प्रति वापरकर्त्यासाठी फ्लॅटपॅक अ‍ॅप्सचे साइड लोड करा आणि आपोआप त्यांचे रिमोट अ‍ॅपसेन्टरमध्ये "
-"जोडा. अ‍ॅप्सच्या डाउनलोड आकाराप्रमाणे आपण स्थापित करण्यापूर्वी साइड लोड महत्त्वाची "
-"माहिती दर्शविते."
-
-#: data/unboxing.metainfo.xml.in:62 data/unboxing.metainfo.xml.in:70
-#: data/unboxing.metainfo.xml.in:83 data/unboxing.metainfo.xml.in:97
-#: data/unboxing.metainfo.xml.in:109
-msgid "Updated translations"
-msgstr "अद्ययावत भाषांतर"
-
-#: data/unboxing.metainfo.xml.in:82
-msgid "Show whether or not apps ask for advanced system permissions"
+"Handle for you the installation of downloaded Deb packages for Ubuntu and "
+"their dependencies. Simply double-click, confirm, enter your password, and "
+"wait. Note that while the app is intended to mirror Sideload, and thought as "
+"a fallback to install from deprecated packaging, it comes from a third "
+"party, and not from the elementary OS team. Please do not file any issue "
+"related to this app and its use to them. It may be more than enough for one "
+"single stray package, and to help out people uncomfortable with the "
+"terminal, but any more advanced function will be better served by the "
+"commandline. Make sure to install only packages that are intended for your "
+"version of elementary OS or its underlying Ubuntu version, and which are not "
+"distributed in AppCenter elementary OS 7: Ubuntu 22.04 LTS elementary OS 8: "
+"Ubuntu 24.04 LTS If you like this application please do not hesitate to do a "
+"donation. This takes a lot of time, and is done to help people."
 msgstr ""
 
-#: data/unboxing.metainfo.xml.in:95
-msgid "Use updated Flatpak branding"
+#: data/unboxing.metainfo.xml.in:31
+msgid "A welcome screen"
 msgstr ""
 
-#: data/unboxing.metainfo.xml.in:96
-msgid "Badge notifications with the unboxinged app's icon"
+#: data/unboxing.metainfo.xml.in:35
+msgid "The dialog before installation"
 msgstr ""
 
-#: data/unboxing.metainfo.xml.in:108
-msgid "Fix blurry app icon in multitasking view"
+#: data/unboxing.metainfo.xml.in:39
+msgid "The final dialog"
+msgstr ""
+
+#: data/unboxing.metainfo.xml.in:69
+msgid "Team Constellation"
+msgstr ""
+
+#: data/unboxing.metainfo.xml.in:76
+msgid "Initial release"
 msgstr ""
 
 #: data/unboxing.desktop.in:5
-msgid "Flatpak Installer"
+#, fuzzy
+msgid "Package Installer"
 msgstr "फ्लॅटपॅक इंस्टॉलर"
 
 #: data/unboxing.desktop.in:8
-msgid "flatpak;"
-msgstr "flatpak;"
+msgid "package;apt;dpkg;install;rpm;deb;debian"
+msgstr ""
+
+#~ msgid ""
+#~ "unboxing Flatpak apps per user and automatically add their remotes to "
+#~ "AppCenter. unboxing shows important information about apps before you "
+#~ "install like their download size."
+#~ msgstr ""
+#~ "प्रति वापरकर्त्यासाठी फ्लॅटपॅक अ‍ॅप्सचे साइड लोड करा आणि आपोआप त्यांचे रिमोट अ‍ॅपसेन्टरमध्ये "
+#~ "जोडा. अ‍ॅप्सच्या डाउनलोड आकाराप्रमाणे आपण स्थापित करण्यापूर्वी साइड लोड महत्त्वाची "
+#~ "माहिती दर्शविते."
+
+#~ msgid "Updated translations"
+#~ msgstr "अद्ययावत भाषांतर"
+
+#~ msgid "flatpak;"
+#~ msgstr "flatpak;"
 
 #~ msgid "elementary, Inc."
 #~ msgstr "एलिमेंटरी,Inc."

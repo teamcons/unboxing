@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-31 18:46+0000\n"
+"POT-Creation-Date: 2025-12-11 21:13+0100\n"
 "PO-Revision-Date: 2024-09-21 10:16+0000\n"
 "Last-Translator: Sinan Decron <sinanveyasinan@gmail.com>\n"
-"Language-Team: Turkish <https://l10n.elementary.io/projects/desktop/"
-"unboxing-extra/tr/>\n"
+"Language-Team: Turkish <https://l10n.elementary.io/projects/desktop/unboxing-"
+"extra/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,53 +19,87 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.6.2\n"
 
-#: data/unboxing.metainfo.xml.in:9 data/unboxing.desktop.in:3
-msgid "unboxing"
+#: data/unboxing.metainfo.xml.in:10 data/unboxing.desktop.in:3
+#, fuzzy
+msgid "Unboxing"
 msgstr "Dışarıdan Yükleme"
 
-#: data/unboxing.metainfo.xml.in:10 data/unboxing.desktop.in:4
+#: data/unboxing.metainfo.xml.in:11 data/unboxing.desktop.in:4
 msgid "Install apps downloaded from the Internet"
 msgstr "İnternetten indirilen uygulamaları yükleyin"
 
-#: data/unboxing.metainfo.xml.in:12
+#: data/unboxing.metainfo.xml.in:13
 msgid ""
-"unboxing Flatpak apps per user and automatically add their remotes to "
-"AppCenter. unboxing shows important information about apps before you "
-"install like their download size."
+"Handle for you the installation of downloaded Deb packages for Ubuntu and "
+"their dependencies. Simply double-click, confirm, enter your password, and "
+"wait. Note that while the app is intended to mirror Sideload, and thought as "
+"a fallback to install from deprecated packaging, it comes from a third "
+"party, and not from the elementary OS team. Please do not file any issue "
+"related to this app and its use to them. It may be more than enough for one "
+"single stray package, and to help out people uncomfortable with the "
+"terminal, but any more advanced function will be better served by the "
+"commandline. Make sure to install only packages that are intended for your "
+"version of elementary OS or its underlying Ubuntu version, and which are not "
+"distributed in AppCenter elementary OS 7: Ubuntu 22.04 LTS elementary OS 8: "
+"Ubuntu 24.04 LTS If you like this application please do not hesitate to do a "
+"donation. This takes a lot of time, and is done to help people."
 msgstr ""
-"Flatpak uygulamalarını kullanıcı başına yükleyin ve uzak depolarını otomatik "
-"olarak Uygulama Merkezine ekleyin. Dışarıdan yükleme, yüklemeden önce "
-"indirme boyutları gibi uygulamalar hakkında önemli bilgiler gösterir."
 
-#: data/unboxing.metainfo.xml.in:62 data/unboxing.metainfo.xml.in:70
-#: data/unboxing.metainfo.xml.in:83 data/unboxing.metainfo.xml.in:97
-#: data/unboxing.metainfo.xml.in:109
-msgid "Updated translations"
-msgstr "Çeviriler güncellendi"
+#: data/unboxing.metainfo.xml.in:31
+msgid "A welcome screen"
+msgstr ""
 
-#: data/unboxing.metainfo.xml.in:82
-msgid "Show whether or not apps ask for advanced system permissions"
-msgstr "Uygulamaların gelişmiş sistem izinleri isteyip istemediğini göster"
+#: data/unboxing.metainfo.xml.in:35
+msgid "The dialog before installation"
+msgstr ""
 
-#: data/unboxing.metainfo.xml.in:95
-msgid "Use updated Flatpak branding"
-msgstr "Güncellenmiş Flatpak markasını kullan"
+#: data/unboxing.metainfo.xml.in:39
+msgid "The final dialog"
+msgstr ""
 
-#: data/unboxing.metainfo.xml.in:96
-msgid "Badge notifications with the unboxinged app's icon"
-msgstr "Dışarıdan yüklenen uygulamanın simgesiyle rozet bildirimleri"
+#: data/unboxing.metainfo.xml.in:69
+msgid "Team Constellation"
+msgstr ""
 
-#: data/unboxing.metainfo.xml.in:108
-msgid "Fix blurry app icon in multitasking view"
-msgstr "Çoklu görev görünümündeki bulanık uygulama simgesi düzeltildi"
+#: data/unboxing.metainfo.xml.in:76
+msgid "Initial release"
+msgstr ""
 
 #: data/unboxing.desktop.in:5
-msgid "Flatpak Installer"
+#, fuzzy
+msgid "Package Installer"
 msgstr "Flatpak Yükleyici"
 
 #: data/unboxing.desktop.in:8
-msgid "flatpak;"
-msgstr "flatpak;"
+msgid "package;apt;dpkg;install;rpm;deb;debian"
+msgstr ""
+
+#~ msgid ""
+#~ "unboxing Flatpak apps per user and automatically add their remotes to "
+#~ "AppCenter. unboxing shows important information about apps before you "
+#~ "install like their download size."
+#~ msgstr ""
+#~ "Flatpak uygulamalarını kullanıcı başına yükleyin ve uzak depolarını "
+#~ "otomatik olarak Uygulama Merkezine ekleyin. Dışarıdan yükleme, yüklemeden "
+#~ "önce indirme boyutları gibi uygulamalar hakkında önemli bilgiler gösterir."
+
+#~ msgid "Updated translations"
+#~ msgstr "Çeviriler güncellendi"
+
+#~ msgid "Show whether or not apps ask for advanced system permissions"
+#~ msgstr "Uygulamaların gelişmiş sistem izinleri isteyip istemediğini göster"
+
+#~ msgid "Use updated Flatpak branding"
+#~ msgstr "Güncellenmiş Flatpak markasını kullan"
+
+#~ msgid "Badge notifications with the unboxinged app's icon"
+#~ msgstr "Dışarıdan yüklenen uygulamanın simgesiyle rozet bildirimleri"
+
+#~ msgid "Fix blurry app icon in multitasking view"
+#~ msgstr "Çoklu görev görünümündeki bulanık uygulama simgesi düzeltildi"
+
+#~ msgid "flatpak;"
+#~ msgstr "flatpak;"
 
 #~ msgid "Use system Flatpak runtimes for locally installed apps"
 #~ msgstr ""

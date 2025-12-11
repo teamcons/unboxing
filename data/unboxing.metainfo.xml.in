@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2019-2023 elementary, Inc. <contact@elementary.io> -->
+<!-- Copyright 2019-2025 elementary, Inc. <contact@elementary.io> -->
+<!-- Copyright 2025 Teamcons -->
 <component type="desktop-application">
   <id>io.github.teamcons.unboxing</id>
   <metadata_license>CC0-1.0</metadata_license>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-31 18:46+0000\n"
+"POT-Creation-Date: 2025-12-11 21:13+0100\n"
 "PO-Revision-Date: 2023-06-14 11:07+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.elementary.io/projects/desktop/unboxing-"
@@ -19,55 +19,91 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.17\n"
 
-#: data/unboxing.metainfo.xml.in:9 data/unboxing.desktop.in:3
-msgid "unboxing"
+#: data/unboxing.metainfo.xml.in:10 data/unboxing.desktop.in:3
+#, fuzzy
+msgid "Unboxing"
 msgstr "Càrrega lateral"
 
-#: data/unboxing.metainfo.xml.in:10 data/unboxing.desktop.in:4
+#: data/unboxing.metainfo.xml.in:11 data/unboxing.desktop.in:4
 msgid "Install apps downloaded from the Internet"
 msgstr "Instal·leu aplicacions baixades d’Internet."
 
-#: data/unboxing.metainfo.xml.in:12
+#: data/unboxing.metainfo.xml.in:13
 msgid ""
-"unboxing Flatpak apps per user and automatically add their remotes to "
-"AppCenter. unboxing shows important information about apps before you "
-"install like their download size."
+"Handle for you the installation of downloaded Deb packages for Ubuntu and "
+"their dependencies. Simply double-click, confirm, enter your password, and "
+"wait. Note that while the app is intended to mirror Sideload, and thought as "
+"a fallback to install from deprecated packaging, it comes from a third "
+"party, and not from the elementary OS team. Please do not file any issue "
+"related to this app and its use to them. It may be more than enough for one "
+"single stray package, and to help out people uncomfortable with the "
+"terminal, but any more advanced function will be better served by the "
+"commandline. Make sure to install only packages that are intended for your "
+"version of elementary OS or its underlying Ubuntu version, and which are not "
+"distributed in AppCenter elementary OS 7: Ubuntu 22.04 LTS elementary OS 8: "
+"Ubuntu 24.04 LTS If you like this application please do not hesitate to do a "
+"donation. This takes a lot of time, and is done to help people."
 msgstr ""
-"Les aplicacions de Flatpak de Càrrega lateral per usuari i addició "
-"automàtica dels recursos remots al Centre d'aplicacions. La Càrrega lateral "
-"mostra informació important sobre les aplicacions abans d’instal·lar-les, "
-"com ara la mida de la baixada."
 
-#: data/unboxing.metainfo.xml.in:62 data/unboxing.metainfo.xml.in:70
-#: data/unboxing.metainfo.xml.in:83 data/unboxing.metainfo.xml.in:97
-#: data/unboxing.metainfo.xml.in:109
-msgid "Updated translations"
-msgstr "Traduccions actualitzades"
-
-#: data/unboxing.metainfo.xml.in:82
-msgid "Show whether or not apps ask for advanced system permissions"
-msgstr "Mostra si les aplicacions demanen o no permisos avançats del sistema"
-
-#: data/unboxing.metainfo.xml.in:95
-msgid "Use updated Flatpak branding"
-msgstr "Usa la marca de Flatpak actualitzada."
-
-#: data/unboxing.metainfo.xml.in:96
-msgid "Badge notifications with the unboxinged app's icon"
+#: data/unboxing.metainfo.xml.in:31
+msgid "A welcome screen"
 msgstr ""
-"Notificacions de la insígnia amb la icona de l'aplicació de càrrega lateral"
 
-#: data/unboxing.metainfo.xml.in:108
-msgid "Fix blurry app icon in multitasking view"
-msgstr "Correcció de la icona d'aplicació borrosa a la vista de multitasca"
+#: data/unboxing.metainfo.xml.in:35
+msgid "The dialog before installation"
+msgstr ""
+
+#: data/unboxing.metainfo.xml.in:39
+msgid "The final dialog"
+msgstr ""
+
+#: data/unboxing.metainfo.xml.in:69
+msgid "Team Constellation"
+msgstr ""
+
+#: data/unboxing.metainfo.xml.in:76
+msgid "Initial release"
+msgstr ""
 
 #: data/unboxing.desktop.in:5
-msgid "Flatpak Installer"
+#, fuzzy
+msgid "Package Installer"
 msgstr "Instal·lador de Flatpak"
 
 #: data/unboxing.desktop.in:8
-msgid "flatpak;"
-msgstr "flatpak;"
+msgid "package;apt;dpkg;install;rpm;deb;debian"
+msgstr ""
+
+#~ msgid ""
+#~ "unboxing Flatpak apps per user and automatically add their remotes to "
+#~ "AppCenter. unboxing shows important information about apps before you "
+#~ "install like their download size."
+#~ msgstr ""
+#~ "Les aplicacions de Flatpak de Càrrega lateral per usuari i addició "
+#~ "automàtica dels recursos remots al Centre d'aplicacions. La Càrrega "
+#~ "lateral mostra informació important sobre les aplicacions abans "
+#~ "d’instal·lar-les, com ara la mida de la baixada."
+
+#~ msgid "Updated translations"
+#~ msgstr "Traduccions actualitzades"
+
+#~ msgid "Show whether or not apps ask for advanced system permissions"
+#~ msgstr ""
+#~ "Mostra si les aplicacions demanen o no permisos avançats del sistema"
+
+#~ msgid "Use updated Flatpak branding"
+#~ msgstr "Usa la marca de Flatpak actualitzada."
+
+#~ msgid "Badge notifications with the unboxinged app's icon"
+#~ msgstr ""
+#~ "Notificacions de la insígnia amb la icona de l'aplicació de càrrega "
+#~ "lateral"
+
+#~ msgid "Fix blurry app icon in multitasking view"
+#~ msgstr "Correcció de la icona d'aplicació borrosa a la vista de multitasca"
+
+#~ msgid "flatpak;"
+#~ msgstr "flatpak;"
 
 #~ msgid "Use system Flatpak runtimes for locally installed apps"
 #~ msgstr ""

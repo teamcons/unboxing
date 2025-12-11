@@ -1,9 +1,23 @@
-# unboxing
-[![Translation status](https://l10n.elementary.io/widgets/desktop/-/unboxing/svg-badge.svg)](https://l10n.elementary.io/engage/desktop/?utm_source=widget)
 
-Flatpak Installer
+<div align="center">
+  <img alt="An icon representing a box with debian*s logo on top of it, and a Plus sign in the bottom right corner" src="data/icons/48.svg" />
+  <h1>Unboxing</h1>
+  <h3>Install debian packages</h3>
 
-![screenshot](data/screenshot.png?raw=true)
+  <a href="https://elementary.io">
+    <img src="https://ellie-commons.github.io/community-badge.svg" alt="Made for elementary OS">
+  </a>
+  
+<span align="center"> <img class="center" src="https://github.com/teamcons/unboxing/blob/main/data/screenshots/welcome.png" alt="A welcome screen"></span>
+</div>
+
+<br/>
+
+## 🦺 Installation
+
+You can download and install Unboxing from various sources:
+
+[![Get it on AppCenter](https://appcenter.elementary.io/badge.svg?new)](https://appcenter.elementary.io/io.github.teamcons.unboxing)
 
 ## Building, Testing, and Installation
 
