@@ -15,9 +15,6 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
 
     Unboxing.Backend backend;
 
-    public string app_id = "io.github.teamcons.unboxing";
-    public string app_name = "io.github.teamcons.unboxing";
-
     public MainWindow (Gtk.Application application, string? filepath, string? filename = _("untrusted package")) {
         Object (
             application: application,
@@ -129,7 +126,7 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
     }
 
     private void on_install_succeeded () {
-        var success_view = new SuccessView (app_name);
+        var success_view = new SuccessView (filename);
 
         stack.add_child (success_view);
         stack.visible_child = success_view;
@@ -138,7 +135,7 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
 
         if (!is_active) {
             var notification = new Notification (_("Package installed"));
-            notification.set_body (_("Installed “%s”").printf (app_name));
+            notification.set_body (_("Installed “%s”").printf (filename));
             application.send_notification ("Installed", notification);
         }
     }
