@@ -44,12 +44,42 @@ public class Unboxing.Welcome : Gtk.ApplicationWindow {
 
         var select = placeholder.append_button (
             new ThemedIcon ("document-open"),
-            _("Open"),
+            _("Select a file to open"),
             _("Browse to open a single file"));
 
             // TODO: Load from Downloads
 
+        var downloads = Environment.get_user_special_dir (GLib.UserDirectory.DOWNLOAD);
+        File[] filelist = {};
+        GLib.Dir downloads_content;
 
+        try {
+            downloads_content = Dir.open (downloads);
+        } catch (Error e) {
+            warning ("Cannot read %s: %s\n", downloads, e.message);
+        }
+
+        string? item = null;
+        while ((item = downloads_content.read_name ()) != null) {
+            print (item);
+            string path = Path.build_filename (downloads, item);
+            File file = File.new_for_path (path);
+
+            if (Utils.is_package (file)) {
+
+                var open_package = placeholder.append_button (
+            new ThemedIcon (
+                "application-vnd.debian.binary-package"),
+            _("Open %s").printf (file.get_basename ()),
+                "%s".printf (file.get_path ()));
+
+                open_package.clicked.connect (() => {hide (); application.open ({file}, "package");});
+            }
+        }
+
+
+
+        /* -------- -------- */
         var support_button = new Gtk.LinkButton.with_label ("https://ko-fi.com/teamcons", _("Support us!")) {
             valign = Gtk.Align.END,
             margin_bottom = 6
@@ -110,7 +140,6 @@ public class Unboxing.Welcome : Gtk.ApplicationWindow {
             }
         });
     }
-
 
     public bool on_dropped (Gtk.DropTarget target, GLib.Value value, double x, double y) {
         if (value.type () == typeof (Gdk.FileList)) {

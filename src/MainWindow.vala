@@ -76,15 +76,29 @@ public class Unboxing.MainWindow : Gtk.ApplicationWindow {
         stack.add_child (progress_view);
 
         main_view.install_request.connect (on_install_button_clicked);
+        main_view.close.connect (close);
 
         backend.progress_changed.connect (on_progress_changed);
         backend.installation_failed.connect (on_install_failed);
         backend.installation_succeeded.connect (on_install_succeeded);
     }
 
+    public void ongoing_dialog () {
+        var dialog = new Granite.MessageDialog.with_image_from_icon_name (_("There Are ongoing operations"),
+            _("Please wait until all operations are finished"),
+            "dialog-warning",
+            Gtk.ButtonsType.CLOSE);
+
+        dialog.response.connect ((response_id) => {
+            dialog.destroy ();
+        });
+        dialog.application = this.application;
+        dialog.present ();
+    }
+
     private void on_install_button_clicked () {
-        if (Application.backend.busy) {
-            Application.ongoing_dialog ();
+        if (Backend.get_instance ().busy) {
+            ongoing_dialog ();
             return;
         }
 

@@ -26,7 +26,6 @@ public class Unboxing.Application : Gtk.Application {
         "application/vnd.debian.binary-package"
     };
 
-    private static Unboxing.MainWindow? main_window;
     private static Unboxing.Welcome? welcome;
 
     // Used for commandline option handling
@@ -93,19 +92,5 @@ public class Unboxing.Application : Gtk.Application {
         this.hold ();
         var main_window = new Unboxing.MainWindow (this, file.get_path ());
         main_window.present ();
-    }
-
-    public static void ongoing_dialog () {
-        var dialog = new Granite.MessageDialog.with_image_from_icon_name (_("There Are ongoing operations"),
-            _("Please wait until all operations are finished"),
-            "dialog-warning",
-            Gtk.ButtonsType.CLOSE);
-
-        dialog.response.connect ((response_id) => {
-            dialog.destroy ();
-        });
-
-        dialog.application = this;
-        dialog.present ();
     }
 }

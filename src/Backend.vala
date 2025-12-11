@@ -17,9 +17,9 @@ public class Unboxing.Backend : Object {
     
     
     public File[] files { get; private set; }
-    public bool busy { get; private set; default = false};
+    public bool busy { get; private set; default = false;}
 
-    Pk.Task task = new Pk.Task ();
+    Pk.Task task;
     Cancellable current_cancellable = null;
 
     public signal void progress_changed (string status, int percentage);

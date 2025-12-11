@@ -6,6 +6,7 @@
 
 public class Unboxing.MainView : AbstractView {
     public signal void install_request ();
+    public signal void close ();
 
     public string app_name {
         set {
@@ -90,7 +91,7 @@ public class Unboxing.MainView : AbstractView {
         content_area.attach (details_stack, 0, 0);
 
         var cancel_button = new Gtk.Button.with_label (_("Cancel"));
-        cancel_button.action_name = "app.quit";
+        cancel_button.clicked.connect (() => {close ();});
 
         var install_button = new Gtk.Button.with_label (_("Install Anyway"));
         install_button.add_css_class (Granite.STYLE_CLASS_DESTRUCTIVE_ACTION);
