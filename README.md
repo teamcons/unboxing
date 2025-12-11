@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img alt="An icon representing a box with debian*s logo on top of it, and a Plus sign in the bottom right corner" src="data/icons/48.svg" />
+  <img alt="An icon representing a box with debian*s logo on top of it, and a Plus sign in the bottom right corner" src="data/icons/64.svg" />
   <h1>Unboxing</h1>
   <h3>Install debian packages</h3>
 
