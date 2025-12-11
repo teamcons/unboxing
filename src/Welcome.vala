@@ -51,6 +51,11 @@ public class Unboxing.Welcome : Gtk.ApplicationWindow {
             valign = Gtk.Align.CENTER
         };
 
+        var scrolled = new Gtk.ScrolledWindow () {
+            child = placeholder,
+            hscrollbar_policy = Gtk.PolicyType.NEVER
+        };
+
         var select = placeholder.append_button (
             new ThemedIcon ("document-open"),
             _("Open"),
@@ -64,7 +69,7 @@ public class Unboxing.Welcome : Gtk.ApplicationWindow {
             margin_bottom = 6
         };
 
-        view.append (placeholder);
+        view.append (scrolled);
         view.append (support_button);
 
         var window_handle = new Gtk.WindowHandle () {
