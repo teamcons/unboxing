@@ -23,8 +23,8 @@ public class Unboxing.MainView : AbstractView {
     private Gtk.Label permissions_label;
 
     construct {
-        primary_label.label = _("Trust and install this app?");
-        secondary_label.label = _("This app is provided solely by its developer and has not been reviewed for security, privacy, or system integration.");
+        primary_label.label = _("Trust and install this package?");
+        secondary_label.label = _("This package is provided solely by its developer and has not been reviewed for security, privacy, or system integration.");
 /*  
         var loading_spinner = new Gtk.Spinner ();
         loading_spinner.start ();
